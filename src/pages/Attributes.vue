@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue';
-import {attributes,attackEffectArr} from '@/data/attributes'
+import {attributes,attackEffectArr} from '../data/attributes'
 
 const titleName = ref('屬性相剋表');
 const attackNumber = ref(0)
@@ -98,7 +98,7 @@ const handleClassNameShow = (number) =>{
     margin-bottom: 0.5rem;
     cursor:pointer;
     .attributes-attribute{
-    background: url(@/images/MST_SV.webp) no-repeat;
+    background: url(../images/MST_SV.webp) no-repeat;
     background-size: 20px 420px;
     min-height: 20px;
     min-width: 20px;
