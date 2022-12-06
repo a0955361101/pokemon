@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Attributes from '../pages/Attributes.vue'
+import Attributes from '../pages/Attributes.vue';
 
 const routes = [
     {
@@ -7,7 +7,7 @@ const routes = [
         name: "Attributes",
         component: Attributes,
     }
-]
+];
 
 const router = createRouter({
     history: createWebHashHistory(),
