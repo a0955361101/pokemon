@@ -115,8 +115,8 @@ const handleClassNameShow = (number) => {
 
             .Xiangke-item-wrap {
                 .Xiangke-item {
-                    margin-top: 0.5rem;
-                    margin-left: 0.5rem;
+                    margin-top: 0.475rem;
+                    margin-left: 0.475rem;
                 }
             }
         }
@@ -128,16 +128,27 @@ const handleClassNameShow = (number) => {
         max-width: 375px;
         padding: 0 3.282rem;
 
+        @media (max-width: 375px) {
+            padding: 0;
+        }
+
         .weakness-wrap {
             display: flex;
             text-align: center;
-            // justify-content: center;
             flex-wrap: wrap;
 
-            .weakness-item {
-                margin-top: 0.5rem;
-                margin-left: 0.5rem;
+            @media (max-width: 375px) {
+                justify-content: center;
             }
+
+            .weakness-item {
+                margin-top: 0.475rem;
+                margin-left: 0.475rem;
+                min-width: 70px;
+            }
+
+
+
         }
 
         h3 {
@@ -159,8 +170,8 @@ const handleClassNameShow = (number) => {
     font-size: 14px;
     border-radius: 10px;
     padding-right: 0.25rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-right: 0.475rem;
+    margin-bottom: 0.475rem;
     cursor: pointer;
 
     .attributes-attribute {
