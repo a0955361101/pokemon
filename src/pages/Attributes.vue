@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { attributes, attackEffectArr } from '../data/attributes';
 
 const titleName = ref('屬性相剋表');
-const subtitleName = ref(['打點', '弱點']);
+const subtitleName = ref(['屬性', '打點', '弱點']);
 const attackNumber = ref(0);
 const showSubtitle = ref(false);
 const showAttackEffectArr = ref([]);
@@ -41,9 +41,16 @@ const handleClassNameShow = (number) => {
                 <p>{{ item.attributes }}</p>
             </div>
         </div>
+        <div class="subtitle" v-show="showSubtitle">
+            <h3>{{ subtitleName[0] }}</h3>
+            <div class="attributes-item subtitle-item" :class="handleClassNameShow(attackNumber)">
+                <div class="attributes-attribute"></div>
+                <p> {{ handleAttributesShow(attackNumber) }}</p>
+            </div>
 
+        </div>
         <div class="xiangke">
-            <h3 class="subtitle" v-show="showSubtitle">{{ subtitleName[0] }}</h3>
+            <h3 class="subtitle" v-show="showSubtitle">{{ subtitleName[1] }}</h3>
             <div v-for="item in showAttackEffectArr" :key="item.id" class="Xiangke-wrap">
                 <div class="Xiangke-item-wrap excellent-effect">效果絕佳
                     <div v-for="doubleShow in item.attributeRestraint.double" class="attributes-item Xiangke-item"
@@ -69,7 +76,7 @@ const handleClassNameShow = (number) => {
             </div>
         </div>
         <div class="weakness" v-show="showSubtitle">
-            <h3>{{ subtitleName[1] }}</h3>
+            <h3>{{ subtitleName[2] }}</h3>
             <div v-for="item in showAttackEffectArr" :key="item.id" class="weakness-wrap">
                 <div v-for="weakness in item.weakness" class="attributes-item weakness-item"
                     :class="handleClassNameShow(weakness)">
@@ -85,9 +92,25 @@ const handleClassNameShow = (number) => {
     max-width: 375px;
     margin: 0 auto;
 
+    .subtitle {
+        margin-top: 1rem;
+        text-align: center;
+
+
+        .subtitle-item {
+            margin: 0 auto;
+        }
+
+        h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+    }
+
     .title {
         color: #333;
-        margin: 1.25rem 0;
+        margin: 1rem 0;
         text-align: center;
         font-size: 1.5rem;
     }
@@ -99,12 +122,12 @@ const handleClassNameShow = (number) => {
     }
 
     .xiangke {
-        margin-top: 1.25rem;
+        margin-top: 1rem;
         text-align: center;
 
         .subtitle {
-            margin-bottom: 1.25rem;
-            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             color: #333;
         }
 
@@ -124,15 +147,17 @@ const handleClassNameShow = (number) => {
     }
 
     .weakness {
-        margin-top: 1.25rem;
+        margin-top: 1rem;
         max-width: 375px;
         padding: 0 3.282rem;
 
         @media (max-width: 375px) {
             padding: 0;
             max-width: 340px;
-            margin: 1.25rem auto 0;
+            margin: 1rem auto 0;
         }
+
+
 
         .weakness-wrap {
             display: flex;
@@ -155,8 +180,8 @@ const handleClassNameShow = (number) => {
 
         h3 {
             text-align: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             color: #333;
         }
     }
