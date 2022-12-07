@@ -130,6 +130,8 @@ const handleClassNameShow = (number) => {
 
         @media (max-width: 375px) {
             padding: 0;
+            max-width: 340px;
+            margin: 1.25rem auto 0;
         }
 
         .weakness-wrap {
