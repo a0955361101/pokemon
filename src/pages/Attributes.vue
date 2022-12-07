@@ -41,7 +41,7 @@ const handleClassNameShow = (number) => {
                 <p>{{ item.attributes }}</p>
             </div>
         </div>
-        <div class="subtitle" v-show="showSubtitle">
+        <div class="subtitle" v-if="showSubtitle">
             <h3>{{ subtitleName[0] }}</h3>
             <div class="attributes-item subtitle-item" :class="handleClassNameShow(attackNumber)">
                 <div class="attributes-attribute"></div>
@@ -50,7 +50,7 @@ const handleClassNameShow = (number) => {
 
         </div>
         <div class="xiangke">
-            <h3 class="subtitle" v-show="showSubtitle">{{ subtitleName[1] }}</h3>
+            <h3 class="subtitle" v-if="showSubtitle">{{ subtitleName[1] }}</h3>
             <div v-for="item in showAttackEffectArr" :key="item.id" class="Xiangke-wrap">
                 <div class="Xiangke-item-wrap excellent-effect">效果絕佳
                     <div v-for="doubleShow in item.attributeRestraint.double" class="attributes-item Xiangke-item"
@@ -75,7 +75,7 @@ const handleClassNameShow = (number) => {
                 </div>
             </div>
         </div>
-        <div class="weakness" v-show="showSubtitle">
+        <div class="weakness" v-if="showSubtitle">
             <h3>{{ subtitleName[2] }}</h3>
             <div v-for="item in showAttackEffectArr" :key="item.id" class="weakness-wrap">
                 <div v-for="weakness in item.weakness" class="attributes-item weakness-item"
