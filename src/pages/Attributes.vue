@@ -3,11 +3,14 @@ import { ref } from 'vue';
 import { attributes, attackEffectArr } from '../data/attributes';
 
 const titleName = ref('屬性相剋表');
+const subtitleName = ref(['打點', '弱點']);
 const attackNumber = ref(0);
+const showSubtitle = ref(false);
 const showAttackEffectArr = ref([]);
 
 const changeAttributes = (number) => {
     attackNumber.value = number;
+    showSubtitle.value = true;
     showAttackEffectArr.value = attackEffectArr.filter((v, i) => {
         return i === number;
     });
@@ -38,26 +41,40 @@ const handleClassNameShow = (number) => {
                 <p>{{ item.attributes }}</p>
             </div>
         </div>
-        <div v-for="item in showAttackEffectArr" :key="item" class="Xiangke-wrap">
-            <div class="Xiangke-item-wrap excellent-effect">效果絕佳
-                <div v-for="doubleShow in item.attributeRestraint.double" class="attributes-item Xiangke-item"
-                    :class="handleClassNameShow(doubleShow)">
-                    <div class="attributes-attribute"></div>
-                    <p>{{ (handleAttributesShow(doubleShow)) }}</p>
+
+        <div class="xiangke">
+            <h3 class="subtitle" v-show="showSubtitle">{{ subtitleName[0] }}</h3>
+            <div v-for="item in showAttackEffectArr" :key="item.id" class="Xiangke-wrap">
+                <div class="Xiangke-item-wrap excellent-effect">效果絕佳
+                    <div v-for="doubleShow in item.attributeRestraint.double" class="attributes-item Xiangke-item"
+                        :class="handleClassNameShow(doubleShow)">
+                        <div class="attributes-attribute"></div>
+                        <p>{{ (handleAttributesShow(doubleShow)) }}</p>
+                    </div>
+                </div>
+                <div class="Xiangke-item-wrap no-effect">沒有效果
+                    <div v-for="zeroShow in item.attributeRestraint.zero" class="attributes-item Xiangke-item"
+                        :class="handleClassNameShow(zeroShow)">
+                        <div class="attributes-attribute"></div>
+                        <p>{{ (handleAttributesShow(zeroShow)) }}</p>
+                    </div>
+                </div>
+                <div class="Xiangke-item-wrap ineffective">效果不好
+                    <div v-for="halfShow in item.attributeRestraint.half" class="attributes-item Xiangke-item"
+                        :class="handleClassNameShow(halfShow)">
+                        <div class="attributes-attribute"></div>
+                        <p>{{ (handleAttributesShow(halfShow)) }}</p>
+                    </div>
                 </div>
             </div>
-            <div class="Xiangke-item-wrap no-effect">沒有效果
-                <div v-for="zeroShow in item.attributeRestraint.zero" class="attributes-item Xiangke-item"
-                    :class="handleClassNameShow(zeroShow)">
+        </div>
+        <div class="weakness" v-show="showSubtitle">
+            <h3>{{ subtitleName[1] }}</h3>
+            <div v-for="item in showAttackEffectArr" :key="item.id" class="weakness-wrap">
+                <div v-for="weakness in item.weakness" class="attributes-item weakness-item"
+                    :class="handleClassNameShow(weakness)">
                     <div class="attributes-attribute"></div>
-                    <p>{{ (handleAttributesShow(zeroShow)) }}</p>
-                </div>
-            </div>
-            <div class="Xiangke-item-wrap ineffective">效果不好
-                <div v-for="halfShow in item.attributeRestraint.half" class="attributes-item Xiangke-item"
-                    :class="handleClassNameShow(halfShow)">
-                    <div class="attributes-attribute"></div>
-                    <p>{{ (handleAttributesShow(halfShow)) }}</p>
+                    <p> {{ handleAttributesShow(weakness) }}</p>
                 </div>
             </div>
         </div>
@@ -69,8 +86,10 @@ const handleClassNameShow = (number) => {
     margin: 0 auto;
 
     .title {
-        margin: 20px 0;
+        color: #333;
+        margin: 1.25rem 0;
         text-align: center;
+        font-size: 1.5rem;
     }
 
     .attributes-wrap {
@@ -79,19 +98,56 @@ const handleClassNameShow = (number) => {
         justify-content: center;
     }
 
-    .Xiangke-wrap {
-        margin-top: 3rem;
-        display: flex;
+    .xiangke {
+        margin-top: 1.25rem;
         text-align: center;
-        justify-content: center;
 
-        .Xiangke-item-wrap {
-            .Xiangke-item {
+        .subtitle {
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .Xiangke-wrap {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
+            .Xiangke-item-wrap {
+                .Xiangke-item {
+                    margin-top: 0.5rem;
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+    }
+
+    .weakness {
+        margin-top: 1.25rem;
+        max-width: 375px;
+        padding: 0 3.282rem;
+
+        .weakness-wrap {
+            display: flex;
+            text-align: center;
+            // justify-content: center;
+            flex-wrap: wrap;
+
+            .weakness-item {
                 margin-top: 0.5rem;
                 margin-left: 0.5rem;
             }
         }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
     }
+
 }
 
 .attributes-item {
