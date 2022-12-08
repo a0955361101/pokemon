@@ -103,13 +103,13 @@ const handleClassNameShow = (number) => {
 
         h3 {
             font-size: 1rem;
-            color: #333;
+            color: var(--black);
             margin-bottom: 1rem;
         }
     }
 
     .title {
-        color: #333;
+        color: var(--black);
         margin: 1rem 0;
         text-align: center;
         font-size: 1.5rem;
@@ -128,7 +128,7 @@ const handleClassNameShow = (number) => {
         .subtitle {
             margin-bottom: 1rem;
             font-size: 1rem;
-            color: #333;
+            color: var(--black);
         }
 
         .Xiangke-wrap {
@@ -182,7 +182,7 @@ const handleClassNameShow = (number) => {
             text-align: center;
             margin-bottom: 1rem;
             font-size: 1rem;
-            color: #333;
+            color: var(--black);
         }
     }
 

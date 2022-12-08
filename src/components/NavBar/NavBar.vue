@@ -40,7 +40,7 @@
     }
 
     .ball-item {
-        background-color: #333;
+        background-color: var(--black);
         width: 50px;
         height: 3px;
         position: absolute;
@@ -52,7 +52,7 @@
         display: block;
         width: 12px;
         height: 12px;
-        background-color: #333;
+        background-color: var(--black);
         border-radius: 50%;
         position: absolute;
         top: calc(50% - 6px);
