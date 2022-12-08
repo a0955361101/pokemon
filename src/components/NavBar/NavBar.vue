@@ -5,19 +5,20 @@
 </script>
 
 <template>
-    <div class="navbar"> </div>
-    <div class="ball">
-        <div class="ball-top"></div>
-        <div class="ball-item"></div>
+    <div class="navbar">
+        <div class="ball">
+            <div class="ball-top"></div>
+            <div class="ball-item"></div>
+        </div>
     </div>
-
 </template>
 
 <style lang="scss" scoped>
 .navbar {
     box-shadow: 3px 5px 5px #eee;
     height: 40px;
-    margin-bottom: -2.5rem;
+    position: relative;
+    margin-bottom: 2rem;
 }
 
 .ball {
@@ -25,9 +26,11 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    position: relative;
+    position: absolute;
+    left: calc(50% - 26px);
     border: 1px solid #ddd;
-    margin: 1rem auto 0;
+    top: 13px;
+
 
     .ball-top {
         width: 50px;
