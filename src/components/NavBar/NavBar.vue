@@ -1,12 +1,14 @@
 <script setup>
-
-
-
+import { ref } from 'vue';
+const clickBallConfirm = ref(false);
+const clickBall = () => {
+    clickBallConfirm.value = !clickBallConfirm.value;
+};
 </script>
 
 <template>
-    <div class="navbar">
-        <div class="ball">
+    <div class="navbar" :class="clickBallConfirm ? 'navbar-active' : ''">
+        <div class="ball" @click="clickBall" :class="clickBallConfirm ? 'ball-active' : ''">
             <div class="ball-top"></div>
             <div class="ball-item"></div>
         </div>
@@ -19,6 +21,12 @@
     height: 40px;
     position: relative;
     margin-bottom: 2rem;
+    transform: translateY(-40px);
+    transition-duration: .3s;
+}
+
+.navbar-active {
+    transform: translateY(0);
 }
 
 .ball {
@@ -29,8 +37,8 @@
     position: absolute;
     left: calc(50% - 26px);
     border: 1px solid #ddd;
-    top: 13px;
-
+    top: 40px;
+    transition-duration: .5s;
 
     .ball-top {
         width: 50px;
@@ -71,5 +79,10 @@
         left: calc(50% - 3px);
         z-index: 100;
     }
+}
+
+.ball-active {
+    top: 15px;
+    transform: rotate(360deg);
 }
 </style>
