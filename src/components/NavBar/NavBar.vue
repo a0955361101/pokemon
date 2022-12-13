@@ -1,6 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { toRefs, ref } from 'vue';
 const clickBallConfirm = ref(false);
+const props = defineProps({
+    paths: {
+        type: Array,
+        default: []
+    }
+});
+const { paths } = toRefs(props);
+
 const clickBall = () => {
     clickBallConfirm.value = !clickBallConfirm.value;
 };
@@ -8,6 +16,11 @@ const clickBall = () => {
 
 <template>
     <div class="navbar" :class="clickBallConfirm ? 'navbar-active' : ''">
+        <div class="navbar-container">
+            <router-link v-for="item in paths" class="navbar-item" :key="item.id" :to="item.url">
+                {{ item.pageName }}
+            </router-link>
+        </div>
         <div class="ball" @click="clickBall" :class="clickBallConfirm ? 'ball-active' : ''">
             <div class="ball-top"></div>
             <div class="ball-item"></div>
@@ -18,11 +31,29 @@ const clickBall = () => {
 <style lang="scss" scoped>
 .navbar {
     box-shadow: 3px 5px 5px #eee;
-    height: 40px;
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     transform: translateY(-40px);
     transition-duration: .3s;
+
+    .navbar-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .navbar-item {
+            padding: 0 1rem;
+            line-height: 2.5rem;
+            text-decoration: none;
+            color: var(--black);
+
+            &:hover {
+                background-color: #eee;
+            }
+        }
+    }
 }
 
 .navbar-active {
@@ -82,7 +113,7 @@ const clickBall = () => {
 }
 
 .ball-active {
-    top: 15px;
+    top: 30px;
     transform: rotate(360deg);
 }
 </style>
